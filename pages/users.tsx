@@ -1,5 +1,6 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { UserService } from "../services/user.service";
+import Button from "@/components/Button";
 interface data {
   id: number;
   name: string;
@@ -24,29 +25,23 @@ interface data {
   };
 }
 export default function User() {
-
-
-//data state management
- const [users,setUsers]=useState<data[]>([])
- useEffect(()=>{
-    UserService.getAllUsers().
-    then((data)=>setUsers(data))
-
- },[])
-
-
- console.log(users)
+  //data state management
+  const [users, setUsers] = useState<data[]>([]);
+  useEffect(() => {
+    UserService.getAllUsers().then((data) => setUsers(data));
+  }, []);
 
   return (
     <>
       <div>
-        {users.map((user,index)=>(<div key={index}>
+        {users.map((user, index) => (
+          <div className="bg-slate-500" key={index}>
             <p>{user.name}</p>
             <p>{user.email}</p>
             <p>{user.phone}</p>
-
-        </div>))}
-    
+            <Button value={111} />
+          </div>
+        ))}
       </div>
     </>
   );
